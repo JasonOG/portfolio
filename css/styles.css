@@ -1,0 +1,255 @@
+html {
+  min-height: 100%;
+  position: relative;
+}
+
+body {
+	/* font-family: "Montserrat"; */
+}
+
+h1 {
+	font-family: "Montserrat", sans-serif;
+	/* color: #426790; */
+	color: #2E4C6D;
+	font-size: 3.5rem;
+	line-height: 1.5;
+	font-weight: 700;
+}
+
+p {
+	/* font-family: "Montserrat", sans-serif; */
+  margin: 20px 20px 20px 20px;
+	font-size: 1.1rem;
+	font-weight: 400;
+}
+
+.scrollTop {
+  position: fixed;
+  bottom: 110px;
+  right: 30px;
+  width: 60px;
+  height: 60px;
+  background: #2a78ba url("../images/up1.png");
+  border-radius: 50%;
+  background-size: 40px;
+  background-position: center;
+  background-repeat: no-repeat;
+  cursor: pointer;
+  z-index: 100000;
+  visibility: hidden;
+  opacity: 0;
+  transition: 0.5s;
+}
+
+.scrollTop.active {
+  visibility: visible;
+  opacity: 1;
+}
+
+.p1 {
+	/* font-family: "Montserrat", sans-serif; */
+  margin: 40px 7% 60px 7%;
+	font-size: 1.1rem;
+	font-weight: 400;
+}
+
+.p2 {
+	/* font-family: "Montserrat", sans-serif; */
+  margin: 40px 14% 5px 14%;
+	font-size: 1.1rem;
+	font-weight: 400;
+}
+
+.p3 {
+	/* font-family: "Montserrat", sans-serif; */
+  margin: 1% 7% 0 7%;
+	font-size: 1.1rem;
+	font-weight: 400;
+}
+
+.p4 {
+	/* font-family: "Montserrat", sans-serif; */
+  margin: 40px 14% 5px 14%;
+	font-size: 1.1rem;
+	font-weight: 300;
+}
+
+.bg {
+  background-image: url(images/network_face5.png) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.profile-pic {
+  /* padding-top: 2%; */
+  /* padding-bottom: 2%; */
+	width: 300px;
+	height: 300px;
+  /* max-width: 100%;
+  min-height: 100%; */
+}
+
+.container-fluid {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 6%;
+}
+
+.container-fluid2 {
+  padding: 3%;
+}
+
+.navbar-brand {
+	padding: 0 18px;
+	/* color: #2E4C6D; */
+}
+
+.nav-item {
+	padding: 0 18px;
+}
+
+.navbar-link {
+	font-size: 1.1rem;
+}
+
+.navbar-nav {
+	font-size: 1.1rem;
+}
+
+.navbar {
+    padding-top: 20px;
+    padding-bottom: 1px;
+    border: 0;
+    border-radius: 0;
+    margin-bottom: 0;
+    /* font-size: 1.1rem; */
+    /* letter-spacing: 2px; */
+}
+
+.navbar-brand {
+  /* font-size: 1.9rem; */
+	padding: 0 18px;
+	/* color: #2E4C6D; */
+}
+
+.navbar-nav  li a:hover {
+    color: #2a78ba !important;
+    /* font-weight: bold; */
+}
+
+.btn {
+	margin: 5% 1%;
+  min-width: 20%;
+}
+
+.btn2 {
+  min-width: 2%;
+}
+
+.btnEmail {
+	margin: 0;
+  min-width: 20%;
+}
+
+.btn-primary {
+	background-color: #2a78ba;
+	border: 2px solid #2a78ba;
+}
+
+.btn-outline-primary {
+	background-color: #fff;
+	border: 2px solid #2a78ba;
+  color: #2a78ba;
+}
+
+.btn-outline-primary:hover {
+	background-color: #2a78ba;
+	border: 2px solid #2a78ba;
+  color: #fff;
+}
+
+.btn-primary:hover {
+	background-color: #2a78ba;
+	border: 2px solid #2a78ba;
+	color: #fff;
+}
+
+.accordion {
+  padding: 3% 7% 0 7%;
+}
+
+.footer-padding {
+  margin-top: 60px;
+	padding-bottom: 60px;
+}
+
+.footer {
+	position: absolute;
+	text-align: center;
+	bottom: 0;
+	width: 100%;
+	height: 90px;
+	background-color: #2a78ba;
+  padding: 15px;
+}
+
+.footer p {
+	margin-top: 15px;
+	font-size: 12px;
+  color: #fff;
+}
+
+.icon {
+	color: #fff;
+}
+
+.icon:hover {
+	color: #2E4C6D;
+}
+
+.contact-logo {
+  /* align-items: center; */
+  margin: 0 0 0 25px;
+  /* padding-bottom: 30px; */
+}
+
+.accordion, .accordion-item {
+  background-color: #fff !important;
+  border-color: #ccc !important;
+  border: none !important;
+  margin: 0 10px 0 10px !important;
+}
+
+.accordion-button {
+  background-color:#fff !important;
+  cursor: pointer !important;
+  border: none !important;
+  border-width: 0 !important;
+  border-color: #fff !important;
+  outline: #fff !important;
+  color: #2E4C6D !important;
+  font-size: 1.3rem !important;
+}
+
+.accordion-button:focus {
+  box-shadow: inherit;
+}
+
+.accordion-border-color {
+  color: #2E4C6D !important;
+  border: none !important;
+  border-width: 0 !important;
+  border-color: #fff !important;
+}
+
+.accordion-header{
+    background-color:#fff !important;
+}
+
+@media.favicon (prefers-color-scheme: dark) {
+	:root {
+		filter: brightness(100%) invert(100%);
+	}
+}
