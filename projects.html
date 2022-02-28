@@ -27,7 +27,7 @@
       <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
           <li id="home" class="nav-item">
-            <a class="nav-link" aria-current="page" href="index.html">Home</a>
+            <a class="nav-link" aria-current="page" href="/">Home</a>
           </li>
           <li id="about" class="nav-item">
             <a class="nav-link" href="about.html">About Me</a>
@@ -98,7 +98,7 @@
               <div class="container-fluid2">
                 <img src="images/rob.png" class="d-block w-100" alt="...">
               </div>
-              <p>I also produced a short 1000 word report surrounding the future of autonomous vehicles and projected when we will see Level 5 fully self driving cars on our roads. You can view this report below.</p>
+              <p>I also produced a short 1000 word report surrounding the future of autonomous vehicles and projected when we will see Level 5 fully self driving cars on our roads. You can click below to view the entire report.</p>
               <div class="container-fluid2" align="center" >
               <a href='images/s2097894_Jason_OGrady_Report.pdf'><img src="images/robotics.jpg" class="d-block w-50" alt="..."></a>
               </div>
@@ -225,10 +225,312 @@
           </h2>
           <div id="collapseSeven" class="accordion-collapse collapse" aria-labelledby="headingSeven" data-bs-parent="#accordionExample">
             <div class="accordion-body p3">
-              <strong>Behaviour arrising from simple rules.</strong>
-              <p>Coming soon...</p>
               <div class="container-fluid2">
-                <img src="images/braitenberg.jpg" class="d-block w-100" alt="...">
+              <h4><strong>Obstacle Avoidance Vehicle.</strong></h4>
+              <div class="container-fluid2">
+                <p2><strong>Description</strong></p2>
+                <p>Since my introduction to robotics I've been wanting to make an autonomous vehicle. There's something about perception that interests me greatly and I really want to understand it better. So I set myself the task of developing a small obstacle avoidance vehicle using an arduino microcontroller.</p>
+                <p>This is what we're aiming for:</p>
+              <p align="center"><img src="images/3d_design.jpg" class="d-block w-75" alt=""></p>
+                <p>The plan is to incorporate what I've learnt so far with basic sensors and challenge myself to create the code from beginning to end. Below I'll talk you through the process I underwent through the development and I've included all the components and code you need if you want to make one yourself.</p>
+              <p align="center"><img src="images/ping.jpg" class="d-block w-75" alt=""></p>
+                <p>The way in which our vehicle will operate is quite simple, it will drive forward and the ultrasonic sensor will keep measuring the distance from the vehicle to an obstacle. If it detects a collision, the vehicle will stop, look to it's left and right and change it's trajectory based on which side has the greater distance.  Let's start with planning.</p>
+              </div>
+              </div>
+              <div class="container-fluid2">
+              <p2 id="hardware-requirements"><strong>Hardware Requirements</strong></p2>
+              <p>The required hardware is easily accessible and inexpensive, you can find them at a local JayCar or online through sites like eBay.</p>
+              <article class="markdown-body">
+              <ul>
+              <li><p>1 x Arduino Nano</p>
+              </li>
+              <li><p>1 x Micro Servo Motor</p>
+              </li>
+              <li><p>1 x Ultrasonic Sensor</p>
+              </li>
+              <li><p>2 x DC Motor w/ wheels</p>
+              </li>
+              <li><p>1 x TB6612FNG H-Bridge</p>
+              </li>
+              <li><p>6 x 1.5v AA batteries</p>
+              </li>
+              </ul>
+            </article>
+              </div>
+
+              <div class="container-fluid2">
+              <p2><strong>Work Breakdown Structure</strong></p2>
+              <article class="markdown-body">
+              <ol>
+              <li><p>Discover and understand the details of all aspects of the problem</p>
+              <ul>
+              <li class="task-list-item"><input disabled="" checked="" type="checkbox"> Check component compatibility
+              </li>
+              <li class="task-list-item"><input disabled="" checked="" type="checkbox"> Check voltage and current requirements / limitations
+              </li>
+              <li class="task-list-item"><input disabled="" checked="" type="checkbox"> Develop workflow
+              </li>
+              </ul>
+              </li>
+              <li><p>Design the components of the solution to the problem</p>
+              <ul>
+              <li class="task-list-item"><input disabled="" checked="" type="checkbox"> Design breadboard layout and connections
+              </li>
+              <li class="task-list-item"><input disabled="" checked="" type="checkbox"> Design program details
+              </li>
+              <li class="task-list-item"><input disabled="" checked="" type="checkbox"> Simulate robot
+              </li>
+              </ul>
+              </li>
+              <li><p>Build the components and integrate everything into the solution</p>
+              <ul>
+              <li class="task-list-item"><input disabled="" checked="" type="checkbox"> Solder / set up required components
+              </li>
+              <li class="task-list-item"><input disabled="" checked="" type="checkbox"> Code and test single components
+              </li>
+              <li class="task-list-item"><input disabled="" checked="" type="checkbox"> Connect hardware as per simulation
+              </li>
+              <li class="task-list-item"><input disabled="" checked="" type="checkbox"> Code and test integrated system
+              </li>
+              </ul>
+              </li>
+              <li><p>Perform all system-level tests and then deploy the solution</p>
+              <ul>
+              <li class="task-list-item"><input disabled="" checked="" type="checkbox"> Perform system functionality tests
+              </li>
+              <li class="task-list-item"><input disabled="" checked="" type="checkbox"> Perform user acceptance test
+              </li>
+              <li class="task-list-item"><input disabled="" checked="" type="checkbox"> Complete documentation
+              </li>
+              </ul>
+              </li>
+              </ol>
+            </article>
+              </div>
+
+              <!-- <div class="container-fluid2">
+              <p2><strong>Workflow</strong></p2>
+              <p>Gantt chart / Critical path</p>
+              <p align="center"><img src="images/gantt.png" class="d-block w-75" alt=""></p>
+              <p align="center"><img src="images/criticalPath.png" class="d-block w-75" alt=""></p>
+              </div> -->
+
+              <div class="container-fluid2">
+              <p2><strong>Design</strong></p2>
+              <p>We'll use the Arduino Nano microcontroller as it encompasses the right amount of PWM pins required for the project in a small form factor.</p>
+              <p align="center"><img src="images/nanoSchematic.png" class="d-block w-75" alt=""></p>
+              <p>We'll use the TB6612FNG motor driver. Being fitted with MOSFETs, it will lead to a considerably lower energy requirement when compared to the more widely used L293D chip, allowing us to remain energy efficient.</p>
+              <p align="center"><img src="images/breadboardDesignFinal.png" class="d-block w-75" alt=""></p>
+              <p>This is the breadboard design implemented in the early stages of planning. Modifications to this design were made during the testing process and can be viewed further down in the documentation.</p>
+              <p align="center"><img src="images/flow2.jpg" class="d-block w-75" alt=""></p>
+              <p>I utilised Twine to configure a rough workflow of how the code will be written for our robot. Again, changes were made during testing to reduce complexity and are reflected below in the final code.</p>
+              </div>
+
+              <div class="container-fluid2">
+              <p2><strong>Build</strong></p2>
+              <p>The components will be tested individually to ensure they are in working order and to reduce troubleshooting in the later stages of the project when the level of complexity has grown. Once all hardware and programming has been completed, the system will be built as a whole and code will be integrated into a single file.</p>
+              </div>
+
+              <div class="container-fluid2">
+              <p2><strong>Test</strong></p2>
+
+              <p>Test Servo Motor</p>
+              <p align="center"><img src="images/microServo.png" class="d-block w-75" alt=""></p>
+              <article class="markdown-body"><pre><code class="fenced-code-block language-arduino">
+            <span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;Servo.h&gt;</span></span>
+
+            <span class="token keyword">int</span> servoPin <span class="token operator">=</span> <span class="token number">10</span><span class="token punctuation">;</span>
+            <span class="token keyword">int</span> servoPos <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+            <span class="token builtin">Servo</span> myServo<span class="token punctuation">;</span>
+
+            <span class="token keyword">void</span> <span class="token keyword">setup</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token builtin">Serial</span><span class="token punctuation">.</span><span class="token function">begin</span><span class="token punctuation">(</span><span class="token number">9600</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                myServo<span class="token punctuation">.</span><span class="token function">attach</span><span class="token punctuation">(</span>servoPin<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+
+            <span class="token keyword">void</span> <span class="token keyword">loop</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                myServo<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span>servoPos<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span></code></pre>
+            </article>
+
+              <p>Test Ultrasonic Sensor</p>
+              <p align="center"><img src="images/ultraSonic.png" class="d-block w-75" alt=""></p>
+              <article class="markdown-body"><pre><code class="fenced-code-block language-arduino"><span class="token macro property">
+            <span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;NewPing.h&gt;</span></span>
+
+            const <span class="token keyword">int</span> trigPin <span class="token operator">=</span> <span class="token number">11</span><span class="token punctuation">;</span>
+            const <span class="token keyword">int</span> echoPin <span class="token operator">=</span> <span class="token number">12</span><span class="token punctuation">;</span>
+
+            <span class="token keyword">int</span> dist <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+
+            NewPing <span class="token function">sonar</span><span class="token punctuation">(</span>trigPin<span class="token punctuation">,</span> echoPin<span class="token punctuation">,</span> <span class="token number">200</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+            <span class="token keyword">void</span> <span class="token keyword">setup</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token builtin">Serial</span><span class="token punctuation">.</span><span class="token function">begin</span><span class="token punctuation">(</span><span class="token number">9600</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+
+            <span class="token keyword">void</span> <span class="token keyword">loop</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                dist <span class="token operator">=</span> sonar<span class="token punctuation">.</span><span class="token function">ping_cm</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token builtin">Serial</span><span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>dist<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token function">delay</span><span class="token punctuation">(</span><span class="token number">100</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span></code></pre>
+            </article>
+
+              <p>Test H-Bridge / DC Motors</p>
+              <p align="center"><img src="images/dcMotors.png" class="d-block w-75" alt=""></p>
+              <article class="markdown-body"><pre><code class="fenced-code-block language-arduino"><span class="token macro property">
+            <span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;SparkFun_TB6612.h&gt;</span></span>
+
+            <span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">define</span> <span class="token expression">AIN1 <span class="token number">3</span></span></span>
+            <span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">define</span> <span class="token expression">BIN1 <span class="token number">7</span></span></span>
+            <span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">define</span> <span class="token expression">AIN2 <span class="token number">4</span></span></span>
+            <span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">define</span> <span class="token expression">BIN2 <span class="token number">8</span></span></span>
+            <span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">define</span> <span class="token expression">PWMA <span class="token number">5</span></span></span>
+            <span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">define</span> <span class="token expression">PWMB <span class="token number">6</span></span></span>
+            <span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">define</span> <span class="token expression">STBY <span class="token number">9</span></span></span>
+
+            const <span class="token keyword">int</span> offsetA <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+            const <span class="token keyword">int</span> offsetB <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
+
+            Motor motor1 <span class="token operator">=</span> <span class="token function">Motor</span><span class="token punctuation">(</span>AIN1<span class="token punctuation">,</span> AIN2<span class="token punctuation">,</span> PWMA<span class="token punctuation">,</span> offsetA<span class="token punctuation">,</span> STBY<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            Motor motor2 <span class="token operator">=</span> <span class="token function">Motor</span><span class="token punctuation">(</span>BIN1<span class="token punctuation">,</span> BIN2<span class="token punctuation">,</span> PWMB<span class="token punctuation">,</span> offsetB<span class="token punctuation">,</span> STBY<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+            <span class="token keyword">void</span> <span class="token keyword">setup</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+
+            <span class="token keyword">void</span> <span class="token keyword">loop</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                motor1<span class="token punctuation">.</span><span class="token function">drive</span><span class="token punctuation">(</span><span class="token number">255</span><span class="token punctuation">,</span> <span class="token number">1000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                motor2 <span class="token punctuation">.</span><span class="token function">drive</span><span class="token punctuation">(</span><span class="token number">255</span><span class="token punctuation">,</span> <span class="token number">1000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token function">delay</span><span class="token punctuation">(</span><span class="token number">1000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span></code></pre>
+            </article>
+
+              <p>Integrate code into single file. You are free to use this code if you are building along at home.</p>
+              <p align="center"><img src="images/breadboardDesignFinal.png" class="d-block w-75" alt=""></p>
+              <article class="markdown-body"><pre><code class="fenced-code-block language-arduino">
+            <span class="token comment">// Obstacle Avoiding Vehicle</span>
+            <span class="token comment">// Jason O'Grady 2022</span>
+
+            <span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;Servo.h&gt;</span></span>
+            <span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;SparkFun_TB6612.h&gt;</span></span>
+            <span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;NewPing.h&gt;</span></span>
+
+            <span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">define</span> <span class="token expression">PWMB <span class="token number">3</span></span></span>
+            <span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">define</span> <span class="token expression">BIN2 <span class="token number">4</span></span></span>
+            <span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">define</span> <span class="token expression">BIN1 <span class="token number">5</span></span></span>
+            <span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">define</span> <span class="token expression">STBY <span class="token number">6</span></span></span>
+            <span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">define</span> <span class="token expression">AIN1 <span class="token number">7</span></span></span>
+            <span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">define</span> <span class="token expression">AIN2 <span class="token number">8</span></span></span>
+            <span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">define</span> <span class="token expression">PWMA <span class="token number">9</span></span></span>
+
+            const <span class="token keyword">int</span> servoPin <span class="token operator">=</span> <span class="token number">10</span><span class="token punctuation">;</span>
+            const <span class="token keyword">int</span> trigPin <span class="token operator">=</span> <span class="token number">11</span><span class="token punctuation">;</span>
+            const <span class="token keyword">int</span> echoPin <span class="token operator">=</span> <span class="token number">12</span><span class="token punctuation">;</span>
+
+            const <span class="token keyword">int</span> offsetA <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+            const <span class="token keyword">int</span> offsetB <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
+
+            Motor motor1 <span class="token operator">=</span> <span class="token function">Motor</span><span class="token punctuation">(</span>AIN1<span class="token punctuation">,</span> AIN2<span class="token punctuation">,</span> PWMA<span class="token punctuation">,</span> offsetA<span class="token punctuation">,</span> STBY<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            Motor motor2 <span class="token operator">=</span> <span class="token function">Motor</span><span class="token punctuation">(</span>BIN1<span class="token punctuation">,</span> BIN2<span class="token punctuation">,</span> PWMB<span class="token punctuation">,</span> offsetB<span class="token punctuation">,</span> STBY<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+            <span class="token builtin">Servo</span> servoMotor<span class="token punctuation">;</span>
+            NewPing <span class="token function">sonar</span><span class="token punctuation">(</span>trigPin<span class="token punctuation">,</span> echoPin<span class="token punctuation">,</span> <span class="token number">200</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+            <span class="token keyword">int</span> dist <span class="token operator">=</span> <span class="token number">100</span><span class="token punctuation">;</span>
+
+            <span class="token keyword">void</span> <span class="token keyword">setup</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+              <span class="token builtin">Serial</span><span class="token punctuation">.</span><span class="token function">begin</span><span class="token punctuation">(</span><span class="token number">9600</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+              servoMotor<span class="token punctuation">.</span><span class="token function">attach</span><span class="token punctuation">(</span>servoPin<span class="token punctuation">)</span><span class="token punctuation">;</span>
+              motor1<span class="token punctuation">.</span><span class="token function">brake</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+              motor2<span class="token punctuation">.</span><span class="token function">brake</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+              <span class="token function">delay</span><span class="token punctuation">(</span><span class="token number">1500</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+              <span class="token function">forward</span><span class="token punctuation">(</span>motor1<span class="token punctuation">,</span> motor2<span class="token punctuation">,</span> <span class="token number">255</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+
+
+            <span class="token keyword">void</span> <span class="token keyword">loop</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+              <span class="token keyword">if</span> <span class="token punctuation">(</span>dist <span class="token operator">&lt;=</span> <span class="token number">15</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token function">forward</span><span class="token punctuation">(</span>motor1<span class="token punctuation">,</span> motor2<span class="token punctuation">,</span> <span class="token number">255</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token function">delay</span><span class="token punctuation">(</span><span class="token number">100</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                dist <span class="token operator">=</span> <span class="token function">getDistance</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token keyword">loop</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+              <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>dist <span class="token operator">&gt;</span> <span class="token number">15</span> <span class="token operator">&amp;&amp;</span> dist <span class="token operator">&lt;=</span><span class="token number">40</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token function">brake</span><span class="token punctuation">(</span>motor1<span class="token punctuation">,</span> motor2<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token function">delay</span><span class="token punctuation">(</span><span class="token number">100</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;=</span> <span class="token number">170</span><span class="token punctuation">;</span> i<span class="token operator">=</span>i<span class="token operator">+</span><span class="token number">25</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                  servoMotor<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token punctuation">}</span>
+                <span class="token function">delay</span><span class="token punctuation">(</span><span class="token number">100</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token keyword">int</span> l <span class="token operator">=</span> <span class="token function">getDistance</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token builtin">Serial</span><span class="token punctuation">.</span><span class="token function">print</span><span class="token punctuation">(</span><span class="token string">"Left: "</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token builtin">Serial</span><span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>l<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+                <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">170</span><span class="token punctuation">;</span> i <span class="token operator">&gt;=</span> <span class="token number">0</span><span class="token punctuation">;</span> i<span class="token operator">=</span>i<span class="token operator">-</span><span class="token number">25</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                  servoMotor<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token punctuation">}</span>
+                <span class="token function">delay</span><span class="token punctuation">(</span><span class="token number">100</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token keyword">int</span> r <span class="token operator">=</span> <span class="token function">getDistance</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token builtin">Serial</span><span class="token punctuation">.</span><span class="token function">print</span><span class="token punctuation">(</span><span class="token string">"Right: "</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token builtin">Serial</span><span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>r<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+                servoMotor<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span><span class="token number">90</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token function">delay</span><span class="token punctuation">(</span><span class="token number">500</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+                <span class="token keyword">if</span> <span class="token punctuation">(</span>l <span class="token operator">&gt;</span> r<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                  <span class="token builtin">Serial</span><span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"Turn Left"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                  motor1<span class="token punctuation">.</span><span class="token function">drive</span><span class="token punctuation">(</span><span class="token number">255</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                  <span class="token function">delay</span><span class="token punctuation">(</span><span class="token number">100</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                  motor2<span class="token punctuation">.</span><span class="token function">drive</span><span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">255</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                  <span class="token function">delay</span><span class="token punctuation">(</span><span class="token number">100</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+                  <span class="token builtin">Serial</span><span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"Turn Right"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                  motor2<span class="token punctuation">.</span><span class="token function">drive</span><span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">255</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                  <span class="token function">delay</span><span class="token punctuation">(</span><span class="token number">100</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                  motor1<span class="token punctuation">.</span><span class="token function">drive</span><span class="token punctuation">(</span><span class="token number">255</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                  <span class="token function">delay</span><span class="token punctuation">(</span><span class="token number">100</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token punctuation">}</span>
+              <span class="token punctuation">}</span>
+
+              motor1<span class="token punctuation">.</span><span class="token function">drive</span><span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">255</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+              motor2<span class="token punctuation">.</span><span class="token function">drive</span><span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">255</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+              dist <span class="token operator">=</span> <span class="token function">getDistance</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+
+
+            <span class="token keyword">int</span> <span class="token function">getDistance</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+              <span class="token function">delay</span><span class="token punctuation">(</span><span class="token number">100</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+              <span class="token keyword">int</span> d <span class="token operator">=</span> sonar<span class="token punctuation">.</span><span class="token function">ping_cm</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+              <span class="token keyword">if</span> <span class="token punctuation">(</span>d <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                   d <span class="token operator">=</span> <span class="token number">200</span><span class="token punctuation">;</span>
+              <span class="token punctuation">}</span>
+
+              <span class="token builtin">Serial</span><span class="token punctuation">.</span><span class="token function">print</span><span class="token punctuation">(</span><span class="token string">"Distance: "</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+              <span class="token builtin">Serial</span><span class="token punctuation">.</span><span class="token function">print</span><span class="token punctuation">(</span>d<span class="token punctuation">)</span><span class="token punctuation">;</span>
+              <span class="token builtin">Serial</span><span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">" cm"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+              <span class="token keyword">return</span> d<span class="token punctuation">;</span>
+            <span class="token punctuation">}</span></code></pre>
+            </article>
+              </div>
+              <div>
+
+                <p2>The early stages of the assembly process, integrating the hardware into a single vehicle.</p2>
+                <p align="center"><img src="images/progress1.png" class="d-block w-75" alt=""></p>
+                <p2>Almost complete. I added some carbon vinyl to the body to give a better aesthetic.</p2>
+                <p align="center"><img src="images/progress2.png" class="d-block w-75" alt=""></p>
+                <p2>Testing out the serial monitor we can see that everything is reporting correctly.</p2>
+                <p align="center"><img src="images/serialMonitor.png" class="d-block w-75" alt=""></p>
+                <p2><strong>The completed vehicle!</strong></p2>
+                <p><img src="images/vehicleLg.gif" class="d-block w-100" alt=""></p>
+              </div>
+              <div>
+              <p2><strong>Learning Outcomes</strong></p2>
+              <p>Discovered the importance of "Divide and Conquer" - reducing into smaller parts and adding incrementally.</p>
+              <p>Learnt how to overcome problems encountered by using components with low quality assurance. Hobby DC motors are quite fickle it seems.</p>
+              <p>Gained hands on experience with creating and troubleshooting a robotic device without assistance.</p>
+              <p>The project overall inspired me to take an elective in circuit board design and move towards designing my own PCB's for use.</p>
+              <P>Inspired me to take the next step towards creating a Braitenberg Vehicle.</P>
               </div>
             </div>
           </div>
