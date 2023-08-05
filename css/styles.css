@@ -87,6 +87,7 @@ p {
   /* padding-bottom: 2%; */
 	width: 300px;
 	height: 300px;
+	border-radius: 50%;
   /* max-width: 100%;
   min-height: 100%; */
 }
